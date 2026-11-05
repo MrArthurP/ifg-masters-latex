@@ -314,12 +314,17 @@
 \def\keys#1{\def\@keys{#1}}                     \keys{}
 \def\dia#1{\def\@dia{#1}}                       \dia{}
 \def\mes#1{\def\@mes{#1}}                       \mes{\month}
-\def\@mesP{
-  \ifcase\@mes\or
-    Janeiro\or Fevereiro\or Mar\c{c}o\or 
-    Abril\or Maio\or Junho\or 
-    Julho\or Agosto\or Setembro\or 
-    Outubro\or Novembro\or Dezembro\fi}
+\def\@mesPlaceholder{mm}
+\def\@mesP{%
+  \ifx\@mes\@mesPlaceholder
+    mm%
+  \else
+    \ifcase\@mes\or
+      Janeiro\or Fevereiro\or Mar\c{c}o\or
+      Abril\or Maio\or Junho\or
+      Julho\or Agosto\or Setembro\or
+      Outubro\or Novembro\or Dezembro\fi
+  \fi}
 \def\ano#1{\def\@ano{#1}}                       \ano{}
 \def\instituicao#1{\def\@instituicao{#1}}       \instituicao{}
 \def\reitoria#1{\def\@reitoria{#1}}             \reitoria{}
@@ -1055,7 +1060,7 @@
 %% long quotation environment
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \newenvironment{citacao}%
-  {\begin{spacing}{1.}%
+  {\begin{spacing}{1.0}%
    \small
    \begin{list}{}{%
        \setlength{\listparindent}{0cm}%
@@ -2277,7 +2282,8 @@
   \let\ps@plain\ps@empty
   \pagestyle{empty}
   #1
-  \cleardoublepage}
+  \cleardoublepage
+  \endgroup}
 \newcommand\su@ExpandTwoArgs[3]{%
   \protected@edef\su@SubString{#1}%
   \protected@edef\su@String{#2}%
