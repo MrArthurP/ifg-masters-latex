@@ -361,6 +361,10 @@
 \RequirePackage{calligra}
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 
+%% BulletPoints maiores
+%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%%\newcommand{\bigbullet}{\raisebox{0.1ex}{\Large$\bullet$}}
+
 % Hyphenation
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \RequirePackage[english,portuguese,brazil]{babel} 		% Termos pré-definidos em Português
@@ -2428,7 +2432,7 @@
 }
 
 \newcommand{\bibliografia}{%
-\bibliography{bib/bibliografia.bib}
+\bibliography{bib/bibliografia}
 }
 
 \makeatother

@@ -1,0 +1,81 @@
+% !TEX root = ../modelo-ifg.tex
+
+\chapter{Introdução}
+\label{cap:intro}
+
+O Cerrado é o segundo maior bioma brasileiro, cobrindo cerca de 25\% do território nacional (2,03 milhões de km²) e, devido a essa extensão, apresenta diversas fitofisionomias \cite{guarlado2023cerrado} que contribuem para a biodiversidade desse ecossistema. O bioma é conhecido como a ``caixa d'água do Brasil'' por abrigar as bacias dos rios São Francisco, Tocantins-Araguaia e Paraná, sendo as duas primeiras componentes essenciais das principais regiões
+hidrográficas do país \cite{ana2015conjuntura}, além de ser reconhecida como o segundo maior bioma brasileiro e a savana mais rica do mundo em biodiversidade com mais de 10.000 espécies de plantas e 1.200 espécies de animais \cite{ibge2009biomas}.
+
+Paralelamente, o bioma abriga 211 Unidades de Conservação (UCs) com dados registrados, totalizando uma área protegida de 22.616.242,33 hectares (ha). Dentre essas unidades, destacam-se 55 Parques Estaduais (PEs), 16 Parques Nacionais (PNs) e 56 Áreas de Proteção Ambiental (APAs), consoante os dados disponibilizados pelo Instituto Socioambiental \cite{isa_uc}.
+
+Contudo, a despeito de sua relevância, o Cerrado é o bioma mais atingido pelo desmatamento no país, concentrando mais da metade (55\%) de toda a área desmatada do território nacional \cite{mapbiomas2026rad}. Somada a esse cenário, a constante incidência de queimadas tem agravado a degradação do bioma, impondo severas perdas à sua biodiversidade e aos serviços ecossistêmicos.
+
+Apesar do ano de 2025 ter apresentado uma baixa na área total queimada globalmente \cite{burton2026wildfires}, o Cerrado permaneceu como ponto crítico: cerca de 8,7 milhões de hectares queimados, representando 69\% das queimadas totais, de acordo com dados de \citeonline{mapbiomas2026raf}. Os prejuízos causados por essa degradação ambiental afetam diretamente os lagos e rios do Cerrado ao comprometer a cobertura de água, a qual, em 2022, sofreu uma redução em 66\% das regiões hidrográficas do bioma em áreas de preservação
+\cite{guarlado2023cerrado}. Além disso, dados históricos apontam maior concentração dessas queimadas em áreas de conservação, com uma densidade de 37,1 focos/1.000km² -- correspondente à 62,91\% do total registrado -- em comparação aos 45,3 focos/1.000km² observados nas demais áreas \cite{vasconcelos2019analise}.
+
+Contudo, os impactos transcendem a esfera ambiental: em 2024, as perdas nas áreas de produção agropecuária atingiram R\$ 1,5 bilhão, além de o cenário ter provocado o aumento das internações por problemas respiratórios e a suspensão de aulas em diversas escolas \cite{versiane2025cerrado}.
+
+Com o objetivo de contornar esse problema, diversas empresas e instituições desenvolvem pesquisas e tecnologias capazes de detectar focos de incêndio, seja via satélite, torres de monitoramento, drones e equipamento de borda para processamento de dados em campo. Dentre as soluções analisadas, as torres de monitoramento destacam-se, diante o cenário específico, pelo menor tempo de resposta, maior precisão e menor custo operacional. Essa superioridade evidencia-se na comparação das características dos sistemas apresentados na Tabela~\ref{tab:comparativo_tecnologias}, na qual essas estruturas combinam tempo de resposta imediato a um baixo custo operacional contínuo.
+
+Estudos focados na viabilidade e eficácia das tecnologias de sensoriamento remoto óptico aprofundam as limitações operacionais de cada plataforma de aquisição. Conforme discutido na revisão sistemática de \citeonline{barmpoutis2020review}, as abordagens baseadas em plataformas orbitais (satélites) enfrentam um dilema intrínseco de compromisso (\textit{trade-off}) espaço-temporal: sistemas dotados de alta taxa de amostragem temporal operam sob resolução espacial excessivamente ampla, ao passo que sensores de maior detalhamento em solo sofrem com longos intervalos de revisita orbital. Essa discrepância espacial e temporal restringe o emprego prático de satélites no combate tático imediato, uma vez que a latência na disponibilização das imagens compromete o fornecimento de alertas precoces em tempo real frente a eventos de rápida propagação.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.25}
+  \caption{Comparativo das tecnologias de monitoramento de focos de incêndio.}
+  \label{tab:comparativo_tecnologias}
+  \begin{tabularx}{\textwidth}{p{2.6cm} *{6}{>{\centering\arraybackslash}X}}
+    \hline
+    \rowcolor{gray!20}
+    \textbf{Tecnologia} &
+    \textbf{Tempo Resposta} &
+    \textbf{Cobertura de Área} &
+    \textbf{Precisão Espacial} &
+    \textbf{Custo Operac.} &
+    \textbf{Autonomia 24/7} &
+    \textbf{Indep. de Rede} \\
+    \hline
+    \textbf{Drones/VANTs}          & $+$    & $\circ$ & $+$    & $\circ$ & $-$     & $\circ$ \\
+    \textbf{Torres}        & $\circ$ & $+$     & $+$    & $+$     & $\circ$ & $\circ$ \\
+    \textbf{Satélites}               & $+$    & $+$     & $-$     & $\circ$ & $\circ$ & $-$     \\
+    \hline
+  \end{tabularx}
+  \\[4pt]
+  \parbox{\textwidth}{%
+    \footnotesize
+    \begin{center}
+    \textbf{Legenda:} $(+)$ Alto/favorável;\quad
+    $(\circ)$ Moderado;\quad
+    $(-)$ Crítico/limitado.\\
+    \end{center}
+    \begin{center}
+    \fontetab{Autoral (2026).}
+    \end{center}
+    
+  }
+\end{table}
+
+Alternativamente, os sistemas aéreos -- compreendendo aeronaves tripuladas e veículos aéreos não tripulados (VANTs/drones) -- conseguem mitigar essas restrições ao sobrevoar áreas de risco sob demanda e aproximar sensores visuais e infravermelhos da superfície. No entanto, \citeonline{barmpoutis2020review} salientam que essas plataformas apresentam autonomia energética estritamente limitada, exigindo missões pontuais programadas, operadores dedicados e condições atmosféricas favoráveis para navegação segura, o que inviabiliza uma vigilância contínua e autônoma em regime integral (24/7).
+
+Em relação às torres de monitoramento fixo, \citeonline{barmpoutis2020review} destacam que essa abordagem se consolida como a mais vantajosa para a detecção de incêndios em seus estágios iniciais. Instaladas em pontos topográficos estrategicamente elevados e equipadas com sensores ópticos ou termográficos contínuos, as estações terrestres oferecem alta resolução de solo associada à aquisição instantânea de dados, dispensando intervalos de revisita orbital ou recargas operacionais constantes. Ademais, a integração direta dessas estruturas fixas com módulos de computação em borda e redes de comunicação sem fio permite o processamento autônomo dos fluxos de vídeo no próprio local da torre, assegurando a identificação de plumas de fumaça incipientes e o disparo imediato de alertas às equipes de resposta antes que o fogo atinja proporções incontroláveis.
+
+Nesse sentido, com o propósito de se aprofundar nas soluções baseadas no uso de torres de
+monitoramento, diversos estudos e técnicas para detecção e localização desses focos de incêndio têm sido desenvolvidas. Entre eles, a pesquisa de \citeonline{khalifeh2022machine} empregou uma abordagem condicional fundamentada em dois sistemas específicos de detecção: \textit{Artificial Neural Network} (ANN) -- sensores que captam informações de ambiente (temperatura, umidade, pressão atmosférica/barométrica, e compostos orgânicos voláteis (COVs)), das quais são processadas por uma Rede Neural Artificial (RNA) simples que identifica padrões e classifica essas informações -- e \textit{Convolutional Neural Network} (CNN) -- abordagem de Visão Computacional (VC) utilizando uma Rede Neural Convolucional (RNC) para classificar a imagem e verificar a presença de incêndio ou fumaça. Porém, utilizando dispositivos de borda para processamento desses dados em campo, tiveram dificuldades em implementar modelos de eficácia superior diante da limitação de espaço na
+memória do equipamento.
+
+De outra forma, \citeonline{castillo2025forest} avançaram no desenvolvimento da VC do sistema, explorando diversas abordagens. O sistema de VC final apresentou uma metodologia híbrida entre processamento de imagem tradicional e Inteligência Artificial (IA). Além disso, implementaram uma lógica de decisão dupla, da qual os sensores e a RNC devem detectar o fogo com um certo valor de confiança e envio automático de mensagem via Telegram.
+
+Porém, os desafios de implementação dessa abordagem não se limitam às tecnologias de sensoriamento óptico e detecção de chamas. O monitoramento contínuo em áreas de preservação ambiental enfrenta severas barreiras de infraestrutura de conectividade, sobretudo devido à cobertura escassa ou inexistente de redes celulares comerciais (3G/4G). Como alternativa para contornar essa limitação em relevo florestal denso, \citeonline{zhao2023forest} propuseram uma arquitetura de comunicação híbrida fundamentada em redes \siglaestrangeira{LPWAN}{\textit{Low-Power Wide-Area Network}}. A solução emprega sensores com tecnologia celular de banda estreita (NB-IoT) nas poucas localidades dotadas de sinal de operadora, integrando-os a uma malha de rádio frequência de longo alcance (LoRa) nas zonas sem cobertura. Diante da intensa atenuação eletromagnética provocada pela folhagem e pelo relevo montanhoso, os autores implementaram um algoritmo de roteamento por múltiplos saltos
+(\textit{multi-hop}) com repetidoras intermediárias espaçadas estrategicamente entre 400\,m e 1\,km. Essa topologia permitiu retransmitir a telemetria ambiental com latência média de 10 segundos até um \textit{gateway} centralizado conectado à rede móvel, viabilizando o fluxo ininterrupto de dados rumo aos servidores em nuvem.
+
+Algumas empresas já usufruem desses resultados de pesquisas no desenvolvimento de produtos de monitoramento remoto. A Startup Agteck i2dt construiu um sistema que contém sensores de ambiente capazes de detectar a presença de incêndios e enviar a localização da posição do dispositivo com um alerta através de uma LoRa \textit{Mesh} \cite{cpqd2025preservacao}. Na mesma linha, a AgroRobotics realiza detecção de focos de incêndio utilizando VC em computadores domésticos através de uma câmera estacionária instalada em uma região estratégica e realizando a comunicação via internet 3G \cite{agrorobotics2022deteccao}.
+
+Entre as soluções comerciais disponíveis, destaca-se a plataforma desenvolvida pela \textit{startup} Umgrauemeio, denominada Pantera. O sistema baseia-se na implantação de uma infraestrutura de torres de monitoramento equipadas com câmeras integradas a algoritmos de inteligência artificial, posicionadas estrategicamente ao redor da área de interesse. Os dados coletados são transmitidos em tempo real a uma central de processamento encarregada de gerar alertas automatizados e orientações operacionais para o combate a incêndios. Contudo, a adoção dessa tecnologia exige expressivo aporte financeiro: a implementação em áreas de preservação ambiental pode superar os R\$ 8 milhões \cite{umgrauemeio2023jn}. Em termos de custos unitários, estima-se que a instalação de cada torre demande cerca de R\$ 60 mil, acrescida de uma taxa de manutenção mensal de aproximadamente R\$ 10 mil por dispositivo \cite{fantin2025tecnologia}.
+
+Diante desse cenário, esta pesquisa visa mitigar os principais gargalos dos sistemas de
+monitoramento remoto convencionais, sobretudo o alto custo de implementação e a limitação de
+comunicação em áreas remotas, propondo uma arquitetura de baixo custo e alta eficiência voltada a Áreas de Preservação Ambiental. O objetivo principal envolve o desenvolvimento de um sistema de monitoramento remoto utilizando equipamento de borda para processamento de dados em tempo real, alimentação \textit{off-grid} e, principalmente, uma rede de comunicação eficaz para áreas remotas.
+
+De forma mais detalhada, a solução explora a integração do computador de borda Nvidia Jetson Orin Nano para a execução local de modelos de Visão Computacional, utilização de câmera \siglaestrangeira{PTZ}{\textit{Pan-Tilt-Zoom}} e um sistema de alimentação fotovoltaico autônomo. A conectividade e a otimização da transmissão de dados serão viabilizadas ao averiguar a topologia híbrida que combina redes 4G e comunicação por rádio frequência via tecnologia LoRa. Por fim, o ecossistema será complementado por um software dedicado ao envio de alertas e à orientação operacional das brigadas de combate, priorizando eficácia na detecção precoce de incêndios a um custo significativamente menor.
