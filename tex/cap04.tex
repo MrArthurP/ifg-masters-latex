@@ -203,7 +203,7 @@ Para a inclusão das figuras \ref{fig:exemploFig1} à \ref{fig:exemploFig3} os c
 \begin{verbatim}
  \begin{figure}[ht!]
   \centering
-  \includegraphics[width=0.40\textwidth]{./fig/foto-ifg}
+  \includegraphics[width=0.40\textwidth]{.fig/test_images/foto-ifg}
   \caption{Câmpus Goiânia do IFG.}
   \label{fig:exemploFig3}
   \fontefig{\cite{ifg2020}}
@@ -212,7 +212,7 @@ Para a inclusão das figuras \ref{fig:exemploFig1} à \ref{fig:exemploFig3} os c
 
 \begin{figure}[ht!]
  \centering
-  \includegraphics[width=0.30\textwidth]{./fig/logo-ifg-vertical-goiania}
+  \includegraphics[width=0.30\textwidth]{.fig/test_images/logo-ifg-vertical-goiania}
  \caption{Logo IFG.}
  \label{fig:exemploFig1}
 \fontefig{\cite{ifg2020}}
@@ -220,7 +220,7 @@ Para a inclusão das figuras \ref{fig:exemploFig1} à \ref{fig:exemploFig3} os c
 
 \begin{figure}[ht!]
  \centering
- \includegraphics[width=0.60\textwidth]{./fig/logo-ifg}
+ \includegraphics[width=0.60\textwidth]{.fig/test_images/logo-ifg}
  \caption[Esta figura é um exemplo de um rótulo de figura]{Esta figura é um exemplo de um rótulo de figura que ocupa mais de uma linha, devendo ser identado e justificado.}
  \label{fig:exemploFig2}
 \fontefig{\cite{ifg2020}}
@@ -228,7 +228,7 @@ Para a inclusão das figuras \ref{fig:exemploFig1} à \ref{fig:exemploFig3} os c
 
 \begin{figure}[H]
  \centering
-  \includegraphics[width=0.70\textwidth]{./fig/foto-ifg}
+  \includegraphics[width=0.70\textwidth]{.fig/test_images/foto-ifg}
   \caption{Câmpus Goiânia do IFG.}
  \label{fig:exemploFig3}
 \fontefig{\cite{ifg2020}}
@@ -243,12 +243,12 @@ A classe \verb|subfigure| pode ser usada para a inclusão de figuras dentro de f
 %   \subfigure[][Primeira subfigura.]
   \subfigure[][Primeira subfigura.]
    {
-    \includegraphics[width=0.35\textwidth]{./fig/triangulo}
+    \includegraphics[width=0.35\textwidth]{.fig/test_images/triangulo}
     \label{subfig:ex1}
    } \qquad
   \subfigure[Segunda subfigura.]
    {
-    \includegraphics[width=0.30\textwidth]{./fig/quadrado}
+    \includegraphics[width=0.30\textwidth]{.fig/test_images/quadrado}
     \label{subfig:ex2}
    }
    \caption[Subfiguras]{{\subref{subfig:ex1}} e {\subref{subfig:ex2}} representam dois exemplos do uso de subfiguras dentro de uma única figura.}
@@ -263,12 +263,12 @@ A figura \ref{fig:subfiguras} foi incluída com os comandos listados a seguir. O
  \centering
   \subfigure[Primeira subfigura.]
    {
-    \includegraphics[width=0.35\textwidth]{./fig/exemploFig1}
+    \includegraphics[width=0.35\textwidth]{.fig/test_images/exemploFig1}
     \label{subfig:ex1}
    } \qquad
   \subfigure[Segunda subfigura.]
    {
-    \includegraphics[width=0.30\textwidth]{./fig/exemploFig2}
+    \includegraphics[width=0.30\textwidth]{.fig/test_images/exemploFig2}
     \label{subfig:ex2}
    }
    \caption{{\subref{subfig:ex1}} e {\subref{subfig:ex2}} representam
@@ -288,7 +288,7 @@ Como exemplo, a Figura \ref{fig:tikz} foi inserida usando o código a seguir.
 \begin{verbatim}
 \begin{figure}[!ht]
  \centering
-\inputTikZ{0.6}{./fig/exemplo.tikz}
+\inputTikZ{0.6}{.fig/test_images/exemplo.tikz}
 \caption{Exemplo de figura usando o pacote TikZ.}
 \label{fig:tikz}
 \fontefig{Elaborada pelo autor}
@@ -297,7 +297,7 @@ Como exemplo, a Figura \ref{fig:tikz} foi inserida usando o código a seguir.
 
 \begin{figure}[!ht]
  \centering
-\inputTikZ{0.6}{./fig/exemplo.tikz}
+\inputTikZ{0.6}{.fig/test_images/exemplo.tikz}
 \caption{Exemplo de figura usando o pacote TikZ.}
 \label{fig:tikz}
 \fontefig{Elaborada pelo autor}
