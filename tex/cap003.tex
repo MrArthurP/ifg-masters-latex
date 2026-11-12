@@ -234,11 +234,9 @@ O projeto elétrico do sistema foi elaborado com base nas diretrizes técnicas d
 \subsection{Seleção de Equipamentos}
 \label{subsec:selecao_equipamentos}
 
-Para completar o sistema de monitoramento de focos de incêndio, além do dispositivo de borda e dos equipamentos que compõem a alimentação do sistema, deverá ser constituído de uma câmera dedicada que possua algumas das tecnologias identificadas na fundamentação teórica, um módulo de Internet
-4G e um modem de internet para realizar o compartilhamento de rede.
+Para completar o sistema de monitoramento de focos de incêndio, além do dispositivo de borda e dos equipamentos que compõem a alimentação do sistema, deverá ser constituído de uma câmera dedicada que possua algumas das tecnologias identificadas na fundamentação teórica, um módulo de Internet 4G e um modem de internet para realizar o compartilhamento de rede.
 
-Em relação ao dispositivo de câmera que será utilizado, com o propósito de assegurar a relação custo-benefício da solução desenvolvida, selecionou-se um equipamento de captura capaz de operar tanto no espectro visível quanto na faixa NIR em curtas distâncias operacionais. O sistema prioriza a detecção de incêndios durante o período diurno e em condições meteorológicas favoráveis,
-contornando a necessidade imediata de sensores térmicos de elevado custo financeiro.
+Em relação ao dispositivo de câmera que será utilizado, com o propósito de assegurar a relação custo-benefício da solução desenvolvida, selecionou-se um equipamento de captura capaz de operar tanto no espectro visível quanto na faixa NIR em curtas distâncias operacionais. O sistema prioriza a detecção de incêndios durante o período diurno e em condições meteorológicas favoráveis, contornando a necessidade imediata de sensores térmicos de elevado custo financeiro.
 
 A partir dessas premissas de viabilidade econômica e robustez de sensoriamento, é analisada a viabilidade da câmera PTZ \textit{Intelbras VIP 5432 SD IR IA FT} \cite{intelbras2025vip5432}. O dispositivo apresenta uma relação custo-benefício estratégica para o projeto ao dispensar matrizes térmicas de alto custo, entregando resolução de 4 megapixels (2560\,$\times$\,1440) a 30 quadros por segundo aliada a um conjunto óptico varifocal com zoom óptico motorizado de 32$\times$ (distância focal de 4,8\,mm a 154\,mm). Essa configuração óptica viabiliza a varredura panorâmica contínua em 360° (\textit{pan}) associada à aproximação detalhada de alvos a longas distâncias,
 atendendo aos requisitos de cobertura territorial de grandes extensões de preservação ambiental. Para operar sob condições de baixa luminosidade e transição noturna, a câmera conta com sensor CMOS de alta sensibilidade com tecnologia \textit{Starlight} e um sistema de iluminação ativa no espectro infravermelho próximo (NIR) composto por LEDs com alcance efetivo de até 150\,metros \cite{intelbras2025vip5432}. Por fim, o equipamento dispõe de carcaça metálica com grau de proteção IP67 e anti-vandalismo IK10, garantindo a integridade física do nó de captura contra intempéries climáticas severas, como chuvas torrenciais, poeira e variações bruscas de temperatura comuns ao ambiente de campo.
@@ -256,12 +254,49 @@ atendendo aos requisitos de cobertura territorial de grandes extensões de prese
 \subsection{Projeto Elétrico}
 \label{subsec:projeto_eletrico}
 
-% Seção a ser desenvolvida em revisão futura.
+Diante da definição dos equipamentos do sistema, o dimensionamento da alimentação é realizado a partir da caracterização das cargas elétricas e da autonomia requerida para a operação em campo. Inicialmente, os dispositivos são agrupados conforme a tensão e o tipo de alimentação (corrente contínua ou alternada), registrando-se suas potências máximas. Para as cargas alimentadas em corrente alternada (CA), considera-se também a eficiência de conversão do inversor ($\eta_{inv}$), de modo a estimar a potência demandada da fonte em corrente contínua (CC):
 
-\subsection{Dimensionamento}
-\label{subsec:dimensionamento}
+\begin{equation}
+  P_{t_{CA}} = \frac{\sum_{i_{ca}=1}^{n} P_{i_{ca}}}{\eta_{inv}}
+  \label{eq:potencia_total_ca}
+\end{equation}
 
-% Seção a ser desenvolvida em revisão futura.
+Para as cargas alimentadas diretamente em CC, somam-se as potências máximas dos dispositivos:
+
+\begin{equation}
+  P_{t_{CC}} = \sum_{i_{cc}=1}^{n} P_{i_{cc}}
+  \label{eq:potencia_total_cc}
+\end{equation}
+
+Em seguida, estima-se a energia diária requerida pelo sistema para o período de operação considerado. Neste trabalho, adota-se operação contínua por 24 horas, hipótese que deve ser aplicada de forma uniforme às cargas:
+
+\begin{equation}
+  E_{d} = (P_{t_{CC}} + P_{t_{CA}}) \times 24
+  \label{eq:energia_diaria}
+\end{equation}
+
+Com a tensão nominal do banco de baterias ($V_s$), converte-se a energia diária em consumo equivalente de carga elétrica ($Q_d$), expresso em ampère-hora por dia:
+
+\begin{equation}
+  Q_{d} = \frac{E_{d}}{V_{s}}
+  \label{eq:carga_diaria}
+\end{equation}
+
+O banco de baterias é dimensionado em função dos dias de autonomia desejados ($N$), da profundidade de descarga máxima permitida ($\text{DoD}$) e da eficiência do banco ($\eta_{bat}$). Para esse cálculo, energia necessária para o banco de baterias em relação à profundidade de descarga (pd\%) é obtida pela equação~\eqref{eq:banco_baterias}:
+
+\begin{equation}
+  E_{bat_{pd\%}} = \frac{Q_{d} \times N}{\text{DoD} \times \eta_{bat}}
+  \label{eq:banco_baterias}
+\end{equation}
+
+Para selecionar os componentes da alimentação, comparam-se a potência calculada e as características nominais dos equipamentos, considerando a eficiência de conversão, a capacidade de atender a picos de demanda e a compatibilidade entre as tensões de operação. A análise do banco de baterias também considera a tecnologia adotada e os dados de vida útil do fabricante em função da profundidade de descarga.
+
+Posteriormente, é mensurado a potência do painel fotovoltaico ($P_{fv}$) para alimentar o sistema, considerando $E_{d}$, a hora de sol plena ($HSP$) e a taxa de desempenho do painel ($PR$):
+
+\begin{equation}
+  P_{fv} = \frac{E_{d}}{HSP \times PR}
+  \label{eq:potencia_painel}
+\end{equation}
 
 % ============================================================
 \section{Etapa V -- Montagem do Protótipo em Campo}
@@ -276,3 +311,100 @@ atendendo aos requisitos de cobertura territorial de grandes extensões de prese
 % ============================================================
 
 % Seção a ser desenvolvida em revisão futura.
+
+% ============================================================
+\section{Resultados do Projeto Elétrico}
+\label{sec:resultados_projeto_eletrico}
+% ============================================================
+
+\subsection{Cargas e seleção do inversor}
+\label{subsec:resultados_cargas_inversor}
+
+A Tabela~\ref{tab:potencias_dispositivos_ca} reúne as potências máximas consideradas para os dispositivos alimentados em CA. A soma das potências das cargas é de 57,1\,W. Para o dimensionamento do inversor, considera-se também a eficiência de conversão, conforme a equação~\eqref{eq:potencia_total_ca}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Potência máxima dos equipamentos alimentados por CA no sistema.}
+  \label{tab:potencias_dispositivos_ca}
+  \begin{tabular}{|c|l|c|}
+    \hline
+    \rowcolor{gray!20}
+    \textbf{ID} & \multicolumn{1}{c|}{\textbf{Equipamento}} & \textbf{\begin{tabular}[c]{@{}c@{}}Potência\\ máxima (W)\end{tabular}} \\
+    \hline
+    1 & Computador - Jetson Nano & 25,0 \\ \hline
+    2 & Câmera PTZ - Dahua & 15,0 \\ \hline
+    3 & Injetor - PoE 200AT & 1,0 \\ \hline
+    4 & Modem 4G Elsys & 12,0 \\ \hline
+    5 & Injetor - PoE Amplimax & 1,0 \\ \hline
+    6 & Modem TP-LINK TL-WR829 & 3,0 \\ \hline
+    7 & Fita de LED (30 cm) & 0,1 \\ \hline
+    \rowcolor{gray!20}
+    \multicolumn{2}{|l|}{\textbf{Potência total das cargas CA}} & \textbf{57,1} \\
+    \hline
+  \end{tabular}
+  \begin{center}
+    \fontetab{Autoral}
+  \end{center}
+\end{table}
+
+Com base na potência calculada, selecionou-se o inversor IMV 402, com potência máxima de saída de 400\,W, tensão nominal de entrada de 24\,V e saída de 220\,V. Considerando eficiência aproximada de 85\%, a potência demandada da fonte CC para alimentar as cargas CA é de aproximadamente 67,18\,W, conforme a equação~\eqref{eq:potencia_total_ca}. A seleção também considera a margem para picos de demanda e a compatibilidade entre as tensões do inversor e dos equipamentos conectados.
+
+A Tabela~\ref{tab:potencias_dispositivos_cc} apresenta as potências máximas consideradas para as cargas alimentadas em CC:
+
+\begin{table}[htbp]
+  \centering
+  \caption{Potência máxima dos equipamentos alimentados em CC.}
+  \label{tab:potencias_dispositivos_cc}
+  \begin{tabular}{|c|l|c|}
+    \hline
+    \rowcolor{gray!20}
+    \textbf{ID} & \multicolumn{1}{c|}{\textbf{Equipamento}} & \textbf{\begin{tabular}[c]{@{}c@{}}Potência\\ máxima (W)\end{tabular}} \\
+    \hline
+    1 & Ventilador/Ventoinha - Sibratech 12x12x2.5 & 8,0 \\ \hline
+    2 & Inversor IMV 402 & 12,0 \\ \hline
+    \rowcolor{gray!20}
+    \multicolumn{2}{|l|}{\textbf{Potência total das cargas CC}} & \textbf{20,0} \\
+    \hline
+  \end{tabular}
+  \begin{center}
+    \fontetab{Autoral}
+  \end{center}
+\end{table}
+
+\subsection{Dimensionamento do banco de baterias}
+\label{subsec:dimensionamento_baterias}
+
+Considerando operação contínua por 24 horas, tensão do banco de 24\,V e as potências registradas nas Tabelas~\ref{tab:potencias_dispositivos_ca} e \ref{tab:potencias_dispositivos_cc}, obtém-se consumo diário de aproximadamente 2.092,32\,Wh/dia (2,092\,kWh/dia). Esse valor inclui a potência demandada pelo inversor para converter a energia destinada às cargas CA. O consumo equivalente é de aproximadamente 87,18\,Ah/dia, calculado pela equação~\eqref{eq:carga_diaria}.
+
+Para o banco de baterias, foram consideradas baterias estacionárias de chumbo-ácido da fabricante Freedom, eficiência de 85\% e autonomia de um dia. A Figura~\ref{fig:ciclo_vida_bateria} apresenta a relação entre a profundidade de descarga e a vida em ciclos utilizada na análise. A Tabela~\ref{tab:dimensionamento_bateria} reúne as capacidades calculadas pela equação~\eqref{eq:banco_baterias} e a estimativa de vida útil para cada profundidade de descarga.
+
+\begin{figure}[htbp]
+  \centering
+  \caption{Ciclos de vida da bateria Freedom em função da profundidade de descarga (DoD).}
+  \label{fig:ciclo_vida_bateria}
+  \includegraphics[width=0.90\textwidth]{fig/doc_images/ciclos_vida}
+  \begin{center}
+    \fontefig{Adaptado de fonte a ser identificada.}
+  \end{center}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Dimensionamento da capacidade do banco de baterias e autonomia estimada em função da profundidade de descarga (DoD).}
+  \label{tab:dimensionamento_bateria}
+  \begin{tabular}{cccc}
+    \hline
+    \rowcolor{gray!20}
+    \textbf{DoD (\%)} & \textbf{$C_{bat_{\%}}$ (Ah)} & \textbf{Ciclos} & \textbf{Anos de Aut.} \\
+    \hline
+    20 & 512,82 & 1500 & 4,00 \\
+    30 & 341,88 & 900 & 2,40 \\
+    40 & 256,41 & 600 & 1,60 \\
+    50 & 205,13 & 450 & 1,20 \\
+    60 & 170,94 & 350 & 0,93 \\
+    \hline
+  \end{tabular}
+  \begin{center}
+    \fontetab{Elaborado pelo autor (2026).}
+  \end{center}
+\end{table}
